@@ -9,25 +9,26 @@ class letsConfig {
 		try {
 			this.dir = dir;
 			this.fileName = fileName;
-			// console.log('Checking config file:', dir + fileName);
+			//console.log('Checking config file:', dir + fileName);
 			let contents = fs.readFileSync(this.dir + this.fileName);
 			if (nzfunc.hasJsonStructure(contents.toString()) === true) {
 				// config has been read
-				let options = JSON.parse(contents);
+				options = JSON.parse(contents);
 				// console.log(options);
-				let keys = Object.keys(options);
-				// console.log(keys);
-				for (let i = 0, l = keys.length; i < l; i++) {
-					this[keys[i]] = options[keys[i]];
-				}
-				// console.log(this);
 			} else {
 				throw new Error('The file does not have a JSON structure!');
 			}
 		} catch (e) {
 			// console.log(`Could not read config.json file: ${e}`);
-			fs.writeFileSync(this.dir + this.fileName, JSON.stringify(options));
+			// console.log(options);
 		}
+
+		let keys = Object.keys(options);
+		// console.log(keys);
+		for (let i = 0, l = keys.length; i < l; i++) {
+			this[keys[i]] = options[keys[i]];
+		}
+		// console.log(this);
 	}
 
 	writeConfigFile() {
