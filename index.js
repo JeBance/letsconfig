@@ -2,11 +2,15 @@ const fs = require('fs');
 const nzfunc = require('nzfunc');
 
 class letsConfig {
+	dir;
+	fileName;
 
 	constructor(options = {}, dir = (__dirname + '/'), fileName = 'config.json') {
 		try {
+			this.dir = dir;
+			this.fileName = fileName;
 			// console.log('Checking config file:', dir + fileName);
-			let contents = fs.readFileSync(dir + fileName);
+			let contents = fs.readFileSync(this.dir + this.fileName);
 			if (nzfunc.hasJsonStructure(contents.toString()) === true) {
 				// config has been read
 				let options = JSON.parse(contents);
@@ -21,9 +25,13 @@ class letsConfig {
 				throw new Error('The file does not have a JSON structure!');
 			}
 		} catch (e) {
-			console.log(`Could not read config.json file: ${e}`);
-			fs.writeFileSync(dir + fileName, JSON.stringify(options));
+			// console.log(`Could not read config.json file: ${e}`);
+			fs.writeFileSync(this.dir + this.fileName, JSON.stringify(options));
 		}
+	}
+
+	writeConfigFile() {
+		fs.writeFileSync(this.dir + this.fileName, JSON.stringify(this));
 	}
 
 }

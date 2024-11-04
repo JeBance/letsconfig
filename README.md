@@ -8,6 +8,7 @@
         - [Node.js](#nodejs)
     - [Examples](#examples)
         - [Constructor](#constructor)
+        - [writeConfigFile](#writeconfigfile)
     - [License](#license)
 
 
@@ -64,6 +65,14 @@ console.log(config.port);
 
 let conf = new letsConfig();
 console.log(conf);
+```
+
+#### writeConfigFile
+
+The `writeConfigFile` function writes the current class data to a JSON configuration file.
+
+```js
+config.writeConfigFile();
 ```
 
 
