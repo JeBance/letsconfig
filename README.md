@@ -46,7 +46,7 @@ The `constructor` method takes the following optional parameters:
 
 * `options` - an object with arbitrary data. Keys and values ​​will be assigned to the class during the initialization process. By default, it takes the value of an empty object: `options = {}`. If a configuration file with a JSON structure is read, the keys from this file will have priority for assigning variables.
 
-* `dir` - a string specifying the absolute path to the directory containing the configuration file. Example: `/home/username/sites/somedomain`. The closing slash at the end is inserted automatically.
+* `dir` - a string specifying the absolute path to the directory containing the configuration file. Example: `/home/username/sites/somedomain/`.
 
 * `fileName` - a string specifying the name of the configuration file with the `json` extension.
 
@@ -55,7 +55,7 @@ let config = new letsConfig({
 		host: 'localhost',
 		port: 8000
 	},
-	'/home/username/sites/somedomain',
+	'/home/username/sites/somedomain/',
 	'configuration.json');
 console.log(config.host);
 console.log(config.port);
